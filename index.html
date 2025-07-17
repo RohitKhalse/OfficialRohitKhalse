@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rohit Khalse</title>
+  <title>Rohit A. Khalse</title>
   <style>
     :root {
       --primary-color-dark: #1a1a1d;
@@ -17,11 +17,8 @@
       --bg-color-light: #ffffff;
       --text-color-light: #222222;
       --card-bg-light: #f0f0f0;
-    }
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px; /* offset for sticky header */
+      --header-height: 60px; /* fixed header height */
     }
 
     body {
@@ -32,7 +29,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background-color 0.4s, color 0.4s;
-      margin: 0;
+      padding-top: var(--header-height); /* space for fixed header */
     }
 
     /* Light theme overrides */
@@ -45,17 +42,20 @@
     header {
       background: var(--primary-color-dark);
       color: #fff;
-      padding: 1.5rem 1rem;
+      padding: 0 1rem;
+      height: var(--header-height);
+      line-height: var(--header-height);
       text-align: center;
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      transition: background-color 0.4s, color 0.4s;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
       align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
+      transition: background-color 0.4s, color 0.4s;
+      flex-wrap: wrap;
     }
 
     body.light-theme header {
@@ -64,26 +64,30 @@
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-size: 1.5rem;
       margin: 0;
-      flex: 1 1 100%;
-      text-align: center;
+      flex-grow: 1;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     nav {
+      margin-left: 1rem;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
       gap: 1rem;
-      flex: 1 1 100%;
+      flex-wrap: wrap;
+      flex-grow: 2;
+      justify-content: flex-end;
     }
 
     nav a {
       color: #fff;
-      margin: 0 0.5rem;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
+      white-space: nowrap;
     }
 
     body.light-theme nav a {
@@ -109,8 +113,9 @@
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
       user-select: none;
       font-size: 0.9rem;
-      margin-left: auto;
       flex-shrink: 0;
+      margin-left: 1rem;
+      white-space: nowrap;
     }
 
     body.light-theme .theme-toggle-btn {
@@ -155,6 +160,7 @@
     }
 
     section {
+      scroll-margin-top: calc(var(--header-height) + 10px);
       padding: 3rem 2rem;
       max-width: 900px;
       margin: 2rem auto;
@@ -222,46 +228,66 @@
       color: var(--text-color-light);
     }
 
+    /* MOBILE FIXES */
     @media (max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
-      nav {
+      header {
         flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
+        align-items: center;
+        height: auto;
+        line-height: normal;
+        padding: 0.5rem 1rem;
       }
+
+      header h1 {
+        font-size: 1.3rem;
+        margin: 0 0 0.5rem 0;
+        text-align: center;
+        flex-grow: 0;
+      }
+
+      nav {
+        margin: 0 0 0.5rem 0;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        flex-grow: 0;
+      }
+
       nav a {
         margin: 0;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
+        padding: 0.3rem 0.7rem;
       }
+
       .theme-toggle-btn {
-        margin: 0.5rem auto 0;
-        position: static;
+        margin: 0;
+        font-size: 0.85rem;
+        padding: 0.3rem 0.7rem;
+        border-width: 1.5px;
+        align-self: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Anchor for home button -->
-  <a href="#top" id="top" style="position: absolute; top: 0;"></a>
-
   <header>
-    <h1>Asst. Professor Rohit Khalse</h1>
+    <h1>Asst.Prof. Rohit A. Khalse</h1>
     <nav>
-      <a href="#top">Home</a>
       <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#work">Work</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
+      <a href="#" id="homeBtn" aria-label="Go to top">Home</a>
     </nav>
-    <button class="theme-toggle-btn" aria-label="Toggle light and dark mode" aria-pressed="false">Light Mode</button>
+    <button class="theme-toggle-btn" aria-label="Toggle light and dark mode">Light Mode</button>
   </header>
 
   <div class="hero">
     <img src="rohit.jpg" alt="Rohit Khalse">
     <h2>Rohit Khalse</h2>
-    <h4>(B.E., M.E. in Computer Science & Engineering)</h4>
+    <h4>(B.E.,M.E. in Computer Science & Engineering)</h4>
     <p>Assistant Professor at MSSCET Jalna</p>
     <a class="resume-button" href="resume.pdf" download>Download Resume</a>
   </div>
@@ -323,11 +349,9 @@
       if (theme === 'light') {
         body.classList.add('light-theme');
         toggleBtn.textContent = 'Dark Mode';
-        toggleBtn.setAttribute('aria-pressed', 'true');
       } else {
         body.classList.remove('light-theme');
         toggleBtn.textContent = 'Light Mode';
-        toggleBtn.setAttribute('aria-pressed', 'false');
       }
       localStorage.setItem('theme', theme);
     }
@@ -340,10 +364,4 @@
       }
     });
 
-    // On page load, set theme from localStorage or default dark
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
-  </script>
-
-</body>
-</html>
+    // On page
