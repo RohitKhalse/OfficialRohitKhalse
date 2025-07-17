@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Assistant Professor Rohit Khalse</title>
+  <link rel="icon" href="favicon.ico" />
   <style>
     :root {
       --primary-color-dark: #1a1a1d;
@@ -19,6 +20,10 @@
       --card-bg-light: #f0f0f0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: url('https://www.transparenttextures.com/patterns/black-paper.png') repeat;
@@ -27,6 +32,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background-color 0.4s, color 0.4s;
+      padding-bottom: 2rem;
     }
 
     /* Light theme overrides */
@@ -45,6 +51,11 @@
       top: 0;
       z-index: 100;
       transition: background-color 0.4s, color 0.4s;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
     }
 
     body.light-theme header {
@@ -55,38 +66,42 @@
     header h1 {
       font-size: 2.2rem;
       margin: 0;
-      display: inline-block;
+      flex: 1 1 100%;
+      text-align: center;
     }
 
     nav {
-      margin-top: 0.5rem;
-      display: inline-block;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1 1 100%;
     }
 
     nav a {
       color: #fff;
-      margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
+      font-size: 1rem;
     }
 
     body.light-theme nav a {
       color: var(--text-color-light);
     }
 
-    nav a:hover {
+    nav a:hover,
+    nav a:focus {
       color: var(--accent-color-dark);
+      outline: none;
     }
 
-    body.light-theme nav a:hover {
+    body.light-theme nav a:hover,
+    body.light-theme nav a:focus {
       color: var(--accent-color-light);
     }
 
     .theme-toggle-btn {
-      position: absolute;
-      top: 1.3rem;
-      right: 1rem;
       background: none;
       border: 2px solid #fff;
       color: #fff;
@@ -97,6 +112,7 @@
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
       user-select: none;
       font-size: 0.9rem;
+      flex: 0 0 auto;
     }
 
     body.light-theme .theme-toggle-btn {
@@ -105,13 +121,16 @@
       background-color: transparent;
     }
 
-    .theme-toggle-btn:hover {
+    .theme-toggle-btn:hover,
+    .theme-toggle-btn:focus {
       background-color: var(--accent-color-dark);
       border-color: var(--accent-color-dark);
       color: #fff;
+      outline: none;
     }
 
-    body.light-theme .theme-toggle-btn:hover {
+    body.light-theme .theme-toggle-btn:hover,
+    body.light-theme .theme-toggle-btn:focus {
       background-color: var(--accent-color-light);
       border-color: var(--accent-color-light);
       color: #fff;
@@ -138,13 +157,18 @@
       width: 100%;
       border-radius: 50%;
       margin-bottom: 1rem;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     section {
       scroll-margin-top: 100px;
       padding: 3rem 2rem;
       max-width: 900px;
-      margin: auto;
+      margin: 2rem auto;
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.6s ease-out;
@@ -182,11 +206,14 @@
       background-color: var(--accent-color-light);
     }
 
-    .resume-button:hover {
+    .resume-button:hover,
+    .resume-button:focus {
       background-color: #019ca3;
+      outline: none;
     }
 
-    body.light-theme .resume-button:hover {
+    body.light-theme .resume-button:hover,
+    body.light-theme .resume-button:focus {
       background-color: #005f8c;
     }
 
@@ -209,12 +236,34 @@
       color: var(--text-color-light);
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
-      nav a { display: block; margin: 0.5rem 0; }
+      header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      header h1 {
+        font-size: 1.8rem;
+        flex: none;
+      }
+      nav {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      nav a {
+        font-size: 1rem;
+      }
       .theme-toggle-btn {
-        position: static;
-        margin-top: 1rem;
+        align-self: center;
+      }
+      .hero {
+        margin: 1.5rem 1rem;
+        max-width: 100%;
+        padding: 1.5rem 1rem;
+      }
+      section {
+        margin: 1.5rem 1rem;
+        padding: 2rem 1rem;
       }
     }
   </style>
@@ -230,13 +279,13 @@
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="theme-toggle-btn" aria-label="Toggle light and dark mode">Light Mode</button>
+    <button class="theme-toggle-btn" aria-label="Toggle light and dark mode" aria-pressed="false">Light Mode</button>
   </header>
 
   <div class="hero">
-    <img src="rohit.jpg" alt="Rohit Khalse">
+    <img src="rohit.jpg" alt="Rohit Khalse" loading="lazy" />
     <h2>Rohit Khalse</h2>
-    <h4>(B.E.,M.E. in Computer Science & Engineering)</h4>
+    <h4>(B.E., M.E. in Computer Science & Engineering)</h4>
     <p>Assistant Professor at MSSCET Jalna</p>
     <a class="resume-button" href="resume.pdf" download>Download Resume</a>
   </div>
@@ -259,9 +308,9 @@
   <section id="projects" class="card">
     <h2>Publications & Projects</h2>
     <ul>
-      <li><strong>“AI-ENABLED INTERNET OF THINGS AND CYBER-PHYSICAL SYSTEMS FOR ENHANCED DISEASE DETECTION A SURVEY”</strong> </li>
-      <li><strong>Final Year Project:</strong> “Graphical Password Authentication”.</li>
-      <li><strong>Paper Published:</strong> “TOWARDS BIG DATA COMPUTING:ENERGY-AWARE ALGORITHMS FOR MAPREDUCE WORKFLOWS”</li>
+      <li><strong>“AI-ENABLED INTERNET OF THINGS AND CYBER-PHYSICAL SYSTEMS FOR ENHANCED DISEASE DETECTION A SURVEY”</strong></li>
+      <li><strong>Final Year Project:</strong> “Graphical Password Authentication”</li>
+      <li><strong>Paper Published:</strong> “TOWARDS BIG DATA COMPUTING: ENERGY-AWARE ALGORITHMS FOR MAPREDUCE WORKFLOWS”</li>
     </ul>
   </section>
 
@@ -298,9 +347,11 @@
       if (theme === 'light') {
         body.classList.add('light-theme');
         toggleBtn.textContent = 'Dark Mode';
+        toggleBtn.setAttribute('aria-pressed', 'true');
       } else {
         body.classList.remove('light-theme');
         toggleBtn.textContent = 'Light Mode';
+        toggleBtn.setAttribute('aria-pressed', 'false');
       }
       localStorage.setItem('theme', theme);
     }
