@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Assistant Professor Rohit A. Khalse</title>
-  <link rel="icon" href="favicon.ico" />
+  <title>Rohit Khalse</title>
   <style>
     :root {
       --primary-color-dark: #1a1a1d;
@@ -22,6 +21,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* offset for sticky header */
     }
 
     body {
@@ -32,7 +32,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background-color 0.4s, color 0.4s;
-      padding-bottom: 2rem;
+      margin: 0;
     }
 
     /* Light theme overrides */
@@ -55,7 +55,7 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
     }
 
     body.light-theme header {
@@ -72,32 +72,29 @@
 
     nav {
       display: flex;
-      gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 1rem;
       flex: 1 1 100%;
     }
 
     nav a {
       color: #fff;
+      margin: 0 0.5rem;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
-      font-size: 1rem;
     }
 
     body.light-theme nav a {
       color: var(--text-color-light);
     }
 
-    nav a:hover,
-    nav a:focus {
+    nav a:hover {
       color: var(--accent-color-dark);
-      outline: none;
     }
 
-    body.light-theme nav a:hover,
-    body.light-theme nav a:focus {
+    body.light-theme nav a:hover {
       color: var(--accent-color-light);
     }
 
@@ -112,7 +109,8 @@
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
       user-select: none;
       font-size: 0.9rem;
-      flex: 0 0 auto;
+      margin-left: auto;
+      flex-shrink: 0;
     }
 
     body.light-theme .theme-toggle-btn {
@@ -121,16 +119,13 @@
       background-color: transparent;
     }
 
-    .theme-toggle-btn:hover,
-    .theme-toggle-btn:focus {
+    .theme-toggle-btn:hover {
       background-color: var(--accent-color-dark);
       border-color: var(--accent-color-dark);
       color: #fff;
-      outline: none;
     }
 
-    body.light-theme .theme-toggle-btn:hover,
-    body.light-theme .theme-toggle-btn:focus {
+    body.light-theme .theme-toggle-btn:hover {
       background-color: var(--accent-color-light);
       border-color: var(--accent-color-light);
       color: #fff;
@@ -157,15 +152,9 @@
       width: 100%;
       border-radius: 50%;
       margin-bottom: 1rem;
-      max-width: 300px;
-      height: auto;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     section {
-      scroll-margin-top: 100px;
       padding: 3rem 2rem;
       max-width: 900px;
       margin: 2rem auto;
@@ -206,14 +195,11 @@
       background-color: var(--accent-color-light);
     }
 
-    .resume-button:hover,
-    .resume-button:focus {
+    .resume-button:hover {
       background-color: #019ca3;
-      outline: none;
     }
 
-    body.light-theme .resume-button:hover,
-    body.light-theme .resume-button:focus {
+    body.light-theme .resume-button:hover {
       background-color: #005f8c;
     }
 
@@ -236,43 +222,33 @@
       color: var(--text-color-light);
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
-      header {
+      header h1 { font-size: 1.8rem; }
+      nav {
         flex-direction: column;
         gap: 0.5rem;
-      }
-      header h1 {
-        font-size: 1.8rem;
-        flex: none;
-      }
-      nav {
-        justify-content: center;
-        gap: 0.5rem;
+        margin-top: 0.5rem;
       }
       nav a {
-        font-size: 1rem;
+        margin: 0;
+        font-size: 1.1rem;
       }
       .theme-toggle-btn {
-        align-self: center;
-      }
-      .hero {
-        margin: 1.5rem 1rem;
-        max-width: 100%;
-        padding: 1.5rem 1rem;
-      }
-      section {
-        margin: 1.5rem 1rem;
-        padding: 2rem 1rem;
+        margin: 0.5rem auto 0;
+        position: static;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Anchor for home button -->
+  <a href="#top" id="top" style="position: absolute; top: 0;"></a>
+
   <header>
-    <h1>Assistant Professor Rohit A. Khalse</h1>
+    <h1>Asst. Professor Rohit Khalse</h1>
     <nav>
+      <a href="#top">Home</a>
       <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#work">Work</a>
@@ -283,8 +259,8 @@
   </header>
 
   <div class="hero">
-    <img src="rohit.jpg" alt="Rohit Khalse" loading="lazy" />
-    <h2>Rohit A. Khalse</h2>
+    <img src="rohit.jpg" alt="Rohit Khalse">
+    <h2>Rohit Khalse</h2>
     <h4>(B.E., M.E. in Computer Science & Engineering)</h4>
     <p>Assistant Professor at MSSCET Jalna</p>
     <a class="resume-button" href="resume.pdf" download>Download Resume</a>
@@ -309,7 +285,7 @@
     <h2>Publications & Projects</h2>
     <ul>
       <li><strong>“AI-ENABLED INTERNET OF THINGS AND CYBER-PHYSICAL SYSTEMS FOR ENHANCED DISEASE DETECTION A SURVEY”</strong></li>
-      <li><strong>Final Year Project:</strong> “Graphical Password Authentication”</li>
+      <li><strong>Final Year Project:</strong> “Graphical Password Authentication”.</li>
       <li><strong>Paper Published:</strong> “TOWARDS BIG DATA COMPUTING: ENERGY-AWARE ALGORITHMS FOR MAPREDUCE WORKFLOWS”</li>
     </ul>
   </section>
