@@ -3,268 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rohit A. Khalse</title>
+  <title>Rohit Khalse</title>
   <style>
     :root {
-      --primary-color-dark: #1a1a1d;
-      --accent-color-dark: #00adb5;
-      --bg-color-dark: #1c1c1e;
-      --text-color-dark: #f5f5f5;
-      --card-bg-dark: #2a2a2d;
-
-      --primary-color-light: #f5f5f5;
-      --accent-color-light: #0077cc;
-      --bg-color-light: #ffffff;
-      --text-color-light: #222222;
-      --card-bg-light: #f0f0f0;
-
-      --header-height: 60px; /* fixed header height */
+      --bg: #1c1c1e;
+      --text: #f5f5f5;
+      --accent: #00adb5;
+      --card: #2a2a2d;
     }
 
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/black-paper.png') repeat;
-      background-color: var(--bg-color-dark);
-      color: var(--text-color-dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-      transition: background-color 0.4s, color 0.4s;
-      padding-top: var(--header-height); /* space for fixed header */
-    }
-
-    /* Light theme overrides */
-    body.light-theme {
-      background: none;
-      background-color: var(--bg-color-light);
-      color: var(--text-color-light);
+      background: var(--bg);
+      color: var(--text);
     }
 
     header {
-      background: var(--primary-color-dark);
-      color: #fff;
-      padding: 0 1rem;
-      height: var(--header-height);
-      line-height: var(--header-height);
-      text-align: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
+      background: #111;
+      padding: 1rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      transition: background-color 0.4s, color 0.4s;
-      flex-wrap: wrap;
-    }
-
-    body.light-theme header {
-      background: var(--primary-color-light);
-      color: var(--text-color-light);
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin: 0;
-      flex-grow: 1;
-      text-align: left;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    }
+
+    .menu-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
     }
 
     nav {
-      margin-left: 1rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      flex-grow: 2;
-      justify-content: flex-end;
+      display: none;
+      flex-direction: column;
+      background: #222;
     }
 
     nav a {
-      color: #fff;
+      padding: 1rem;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-      white-space: nowrap;
-    }
-
-    body.light-theme nav a {
-      color: var(--text-color-light);
+      color: white;
+      border-top: 1px solid #333;
     }
 
     nav a:hover {
-      color: var(--accent-color-dark);
+      background: var(--accent);
     }
 
-    body.light-theme nav a:hover {
-      color: var(--accent-color-light);
-    }
-
-    .theme-toggle-btn {
-      background: none;
-      border: 2px solid #fff;
-      color: #fff;
-      padding: 0.3rem 0.7rem;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-      user-select: none;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-      margin-left: 1rem;
-      white-space: nowrap;
-    }
-
-    body.light-theme .theme-toggle-btn {
-      border-color: var(--text-color-light);
-      color: var(--text-color-light);
-      background-color: transparent;
-    }
-
-    .theme-toggle-btn:hover {
-      background-color: var(--accent-color-dark);
-      border-color: var(--accent-color-dark);
-      color: #fff;
-    }
-
-    body.light-theme .theme-toggle-btn:hover {
-      background-color: var(--accent-color-light);
-      border-color: var(--accent-color-light);
-      color: #fff;
+    .show {
+      display: flex;
     }
 
     .hero {
       text-align: center;
       padding: 2rem 1rem;
-      background: var(--card-bg-dark);
-      margin: 2rem auto;
-      max-width: 350px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 1;
-      transition: background-color 0.4s, color 0.4s;
-    }
-
-    body.light-theme .hero {
-      background: var(--card-bg-light);
-      color: var(--text-color-light);
+      background: var(--card);
     }
 
     .hero img {
-      width: 100%;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      margin-bottom: 1rem;
+      object-fit: cover;
     }
 
     section {
-      scroll-margin-top: calc(var(--header-height) + 10px);
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: 2rem auto;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease-out;
-      z-index: 1;
-      background: var(--card-bg-dark);
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      color: var(--text-color-dark);
-    }
-
-    body.light-theme section {
-      background: var(--card-bg-light);
-      color: var(--text-color-light);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    section.active {
-      opacity: 1;
-      transform: translateY(0);
+      padding: 1.5rem 1rem;
+      margin: 1rem;
+      background: var(--card);
+      border-radius: 6px;
     }
 
     .resume-button {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
-      background-color: var(--accent-color-dark);
+      padding: 0.6rem 1.2rem;
+      background: var(--accent);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    body.light-theme .resume-button {
-      background-color: var(--accent-color-light);
-    }
-
-    .resume-button:hover {
-      background-color: #019ca3;
-    }
-
-    body.light-theme .resume-button:hover {
-      background-color: #005f8c;
-    }
-
-    ul {
-      list-style: disc;
-      margin-left: 1.5rem;
+      border-radius: 4px;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
-      background: var(--primary-color-dark);
-      color: white;
-      margin-top: 3rem;
-      transition: background-color 0.4s, color 0.4s;
+      padding: 1rem;
+      background: #111;
+      color: #ccc;
     }
 
-    body.light-theme footer {
-      background: var(--primary-color-light);
-      color: var(--text-color-light);
-    }
-
-    /* MOBILE FIXES */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        line-height: normal;
-        padding: 0.5rem 1rem;
-      }
-
-      header h1 {
-        font-size: 1.3rem;
-        margin: 0 0 0.5rem 0;
-        text-align: center;
-        flex-grow: 0;
-      }
-
+    @media (min-width: 600px) {
       nav {
-        margin: 0 0 0.5rem 0;
+        display: flex !important;
+        flex-direction: row;
         justify-content: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        flex-grow: 0;
       }
-
-      nav a {
-        margin: 0;
-        font-size: 0.9rem;
-        padding: 0.3rem 0.7rem;
-      }
-
-      .theme-toggle-btn {
-        margin: 0;
-        font-size: 0.85rem;
-        padding: 0.3rem 0.7rem;
-        border-width: 1.5px;
-        align-self: center;
+      .menu-btn {
+        display: none;
       }
     }
   </style>
@@ -272,96 +116,64 @@
 <body>
 
   <header>
-    <h1>Asst.Prof. Rohit A. Khalse</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#work">Work</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <a href="#" id="homeBtn" aria-label="Go to top">Home</a>
-    </nav>
-    <button class="theme-toggle-btn" aria-label="Toggle light and dark mode">Light Mode</button>
+    <h1>Rohit Khalse</h1>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
   </header>
+  <nav id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
   <div class="hero">
-    <img src="rohit.jpg" alt="Rohit Khalse">
-    <h2>Rohit Khalse</h2>
-    <h4>(B.E.,M.E. in Computer Science & Engineering)</h4>
-    <p>Assistant Professor at MSSCET Jalna</p>
-    <a class="resume-button" href="resume.pdf" download>Download Resume</a>
+    <img src="rohit.jpg" alt="Rohit Khalse" />
+    <h2>Assistant Professor</h2>
+    <p>B.E., M.E. in Computer Science & Engineering</p>
+    <p>MSSCET Jalna</p>
+    <a href="resume.pdf" download class="resume-button">Download Resume</a>
   </div>
 
-  <section id="about" class="card">
-    <h2>About Me</h2>
-    <p>Hello! I am <strong>Rohit Khalse</strong>, an Assistant Professor currently teaching at <strong>MSSCET Jalna</strong>. I’m passionate about research-driven teaching and mentoring future engineers.</p>
+  <section id="about">
+    <h3>About Me</h3>
+    <p>Hello! I’m Rohit Khalse, an Assistant Professor passionate about research-based teaching and mentoring at MSSCET Jalna.</p>
   </section>
 
-  <section id="education" class="card">
-    <h2>Education</h2>
-    <p>I graduated from <strong>Government Polytechnic Pune</strong>, where I built my foundation in engineering.</p>
+  <section id="education">
+    <h3>Education</h3>
+    <p>Graduated from Government Polytechnic Pune with a strong foundation in engineering.</p>
   </section>
 
-  <section id="work" class="card">
-    <h2>Current Work</h2>
-    <p>At <strong>MSSCET Jalna</strong>, I focus on classroom teaching, guiding student research, contributing to curriculum enhancements, and staying active in academic development.</p>
+  <section id="work">
+    <h3>Current Work</h3>
+    <p>I focus on classroom teaching, student research, and curriculum development at MSSCET Jalna.</p>
   </section>
 
-  <section id="projects" class="card">
-    <h2>Publications & Projects</h2>
+  <section id="projects">
+    <h3>Publications & Projects</h3>
     <ul>
-      <li><strong>“AI-ENABLED INTERNET OF THINGS AND CYBER-PHYSICAL SYSTEMS FOR ENHANCED DISEASE DETECTION A SURVEY”</strong></li>
-      <li><strong>Final Year Project:</strong> “Graphical Password Authentication”.</li>
-      <li><strong>Paper Published:</strong> “TOWARDS BIG DATA COMPUTING: ENERGY-AWARE ALGORITHMS FOR MAPREDUCE WORKFLOWS”</li>
+      <li>“AI-Enabled IoT and CPS for Enhanced Disease Detection: A Survey”</li>
+      <li>Final Year Project: “Graphical Password Authentication”</li>
+      <li>Published: “Energy-Aware Algorithms for MapReduce Workflows”</li>
     </ul>
   </section>
 
-  <section id="contact" class="card">
-    <h2>Contact</h2>
-    <p>📧 <a href="mailto:khalse606@gmail.com">khalse606@gmail.com</a></p>
-    <p>📍 MSSCET Jalna, Maharashtra, India</p>
+  <section id="contact">
+    <h3>Contact</h3>
+    <p>Email: <a href="mailto:khalse606@gmail.com">khalse606@gmail.com</a></p>
+    <p>Location: MSSCET Jalna, Maharashtra, India</p>
   </section>
 
   <footer>
-    <p>© 2025 Rohit Khalse | All Rights Reserved</p>
+    <p>&copy; 2025 Rohit Khalse</p>
   </footer>
 
   <script>
-    // Section reveal on scroll
-    const sections = document.querySelectorAll('section');
-    function revealSections() {
-      const triggerBottom = window.innerHeight * 0.9;
-      sections.forEach(section => {
-        const boxTop = section.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) {
-          section.classList.add('active');
-        }
-      });
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('show');
     }
-    window.addEventListener('scroll', revealSections);
-    window.addEventListener('load', revealSections);
-
-    // Theme toggle logic
-    const toggleBtn = document.querySelector('.theme-toggle-btn');
-    const body = document.body;
-
-    function setTheme(theme) {
-      if (theme === 'light') {
-        body.classList.add('light-theme');
-        toggleBtn.textContent = 'Dark Mode';
-      } else {
-        body.classList.remove('light-theme');
-        toggleBtn.textContent = 'Light Mode';
-      }
-      localStorage.setItem('theme', theme);
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      if (body.classList.contains('light-theme')) {
-        setTheme('dark');
-      } else {
-        setTheme('light');
-      }
-    });
-
-    // On page
+  </script>
+</body>
+</html>
