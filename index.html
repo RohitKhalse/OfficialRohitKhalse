@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assistant Professor Rohit Khalse</title>
+  <style>
+    :root {
+      --primary-color-dark: #1a1a1d;
+      --accent-color-dark: #00adb5;
+      --bg-color-dark: #1c1c1e;
+      --text-color-dark: #f5f5f5;
+      --card-bg-dark: #2a2a2d;
+
+      --primary-color-light: #f5f5f5;
+      --accent-color-light: #0077cc;
+      --bg-color-light: #ffffff;
+      --text-color-light: #222222;
+      --card-bg-light: #f0f0f0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/black-paper.png') repeat;
+      background-color: var(--bg-color-dark);
+      color: var(--text-color-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    /* Light theme overrides */
+    body.light-theme {
+      background: none;
+      background-color: var(--bg-color-light);
+      color: var(--text-color-light);
+    }
+
+    header {
+      background: var(--primary-color-dark);
+      color: #fff;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.light-theme header {
+      background: var(--primary-color-light);
+      color: var(--text-color-light);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0;
+      display: inline-block;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    body.light-theme nav a {
+      color: var(--text-color-light);
+    }
+
+    nav a:hover {
+      color: var(--accent-color-dark);
+    }
+
+    body.light-theme nav a:hover {
+      color: var(--accent-color-light);
+    }
+
+    .theme-toggle-btn {
+      position: absolute;
+      top: 1.3rem;
+      right: 1rem;
+      background: none;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      user-select: none;
+      font-size: 0.9rem;
+    }
+
+    body.light-theme .theme-toggle-btn {
+      border-color: var(--text-color-light);
+      color: var(--text-color-light);
+      background-color: transparent;
+    }
+
+    .theme-toggle-btn:hover {
+      background-color: var(--accent-color-dark);
+      border-color: var(--accent-color-dark);
+      color: #fff;
+    }
+
+    body.light-theme .theme-toggle-btn:hover {
+      background-color: var(--accent-color-light);
+      border-color: var(--accent-color-light);
+      color: #fff;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--card-bg-dark);
+      margin: 2rem auto;
+      max-width: 350px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.light-theme .hero {
+      background: var(--card-bg-light);
+      color: var(--text-color-light);
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+      z-index: 1;
+      background: var(--card-bg-dark);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      color: var(--text-color-dark);
+    }
+
+    body.light-theme section {
+      background: var(--card-bg-light);
+      color: var(--text-color-light);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .resume-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--accent-color-dark);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    body.light-theme .resume-button {
+      background-color: var(--accent-color-light);
+    }
+
+    .resume-button:hover {
+      background-color: #019ca3;
+    }
+
+    body.light-theme .resume-button:hover {
+      background-color: #005f8c;
+    }
+
+    ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--primary-color-dark);
+      color: white;
+      margin-top: 3rem;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.light-theme footer {
+      background: var(--primary-color-light);
+      color: var(--text-color-light);
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      nav a { display: block; margin: 0.5rem 0; }
+      .theme-toggle-btn {
+        position: static;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Assistant Professor Rohit Khalse</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle-btn" aria-label="Toggle light and dark mode">Light Mode</button>
+  </header>
+
+  <div class="hero">
+    <img src="rohit.jpg" alt="Rohit Khalse">
+    <h2>Rohit Khalse</h2>
+    <p>Assistant Professor at MSSCET Jalna</p>
+    <a class="resume-button" href="resume.pdf" download>Download Resume</a>
+  </div>
+
+  <section id="about" class="card">
+    <h2>About Me</h2>
+    <p>Hello! I am <strong>Rohit Khalse</strong>, an Assistant Professor currently teaching at <strong>MSSCET Jalna</strong>. I’m passionate about research-driven teaching and mentoring future engineers.</p>
+  </section>
+
+  <section id="education" class="card">
+    <h2>Education</h2>
+    <p>I graduated from <strong>Government Polytechnic Pune</strong>, where I built my foundation in engineering and pedagogy.</p>
+  </section>
+
+  <section id="work" class="card">
+    <h2>Current Work</h2>
+    <p>At <strong>MSSCET Jalna</strong>, I focus on classroom teaching, guiding student research, contributing to curriculum enhancements, and staying active in academic development.</p>
+  </section>
+
+  <section id="projects" class="card">
+    <h2>Publications & Projects</h2>
+    <ul>
+      <li><strong>“A Study on Smart Irrigation Systems using IoT”</strong> – Presented at National Conference on Embedded Systems, 2023.</li>
+      <li><strong>Final Year Project Mentor:</strong> “AI-Based Attendance System” – MSSCET Jalna, 2024.</li>
+      <li><strong>Paper Published:</strong> “Energy Efficient Routing in Wireless Sensor Networks” – IJEEE Journal, Vol. 12.</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="card">
+    <h2>Contact</h2>
+    <p>📧 <a href="mailto:rohit.khalse@example.com">rohit.khalse@example.com</a></p>
+    <p>📍 MSSCET Jalna, Maharashtra, India</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Rohit Khalse | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Section reveal on scroll
+    const sections = document.querySelectorAll('section');
+    function revealSections() {
+      const triggerBottom = window.innerHeight * 0.9;
+      sections.forEach(section => {
+        const boxTop = section.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+          section.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('load', revealSections);
+
+    // Theme toggle logic
+    const toggleBtn = document.querySelector('.theme-toggle-btn');
+    const body = document.body;
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        body.classList.add('light-theme');
+        toggleBtn.textContent = 'Dark Mode';
+      } else {
+        body.classList.remove('light-theme');
+        toggleBtn.textContent = 'Light Mode';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (body.classList.contains('light-theme')) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    });
+
+    // On page load, set theme from localStorage or default dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+  </script>
+
+</body>
+</html>
