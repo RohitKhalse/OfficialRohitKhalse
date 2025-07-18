@@ -2,51 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rohit Khalse</title>
+
   <style>
     :root {
-      --bg: #1c1c1e;
+      --bg: #121212;
       --text: #f5f5f5;
       --accent: #00adb5;
-      --card: #2a2a2d;
+      --card: #1f1f1f;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* Fixes section hiding behind sticky header */
     }
 
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
     }
 
     header {
-      background: #111;
-      padding: 1rem;
+      background: #0a0a0a;
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
+      box-shadow: 0 2px 5px var(--shadow);
     }
 
     header h1 {
-      font-size: 1.3rem;
-      margin: 0;
+      font-size: 1.5rem;
+      color: var(--accent);
     }
 
     .menu-btn {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
+      display: block;
     }
 
     nav {
       display: none;
       flex-direction: column;
-      background: #222;
+      background: #1a1a1a;
+      width: 100%;
+    }
+
+    nav.show {
+      display: flex;
     }
 
     nav a {
@@ -54,59 +73,104 @@
       text-decoration: none;
       color: white;
       border-top: 1px solid #333;
+      transition: background 0.3s ease;
     }
 
     nav a:hover {
       background: var(--accent);
-    }
-
-    .show {
-      display: flex;
+      color: #111;
     }
 
     .hero {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       background: var(--card);
+      box-shadow: 0 2px 10px var(--shadow);
     }
 
     .hero img {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
+      margin-bottom: 1rem;
+      border: 4px solid var(--accent);
     }
 
-    section {
-      padding: 1.5rem 1rem;
-      margin: 1rem;
-      background: var(--card);
-      border-radius: 6px;
+    .hero h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .resume-button {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.4rem;
       background: var(--accent);
-      color: white;
+      color: #111;
+      font-weight: bold;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 30px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .resume-button:hover {
+      background: #02c3cc;
+      transform: scale(1.05);
+    }
+
+    main {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      padding: 2rem;
+      margin: 2rem 0;
+      background: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+
+    section h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--accent);
+      padding-left: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
     }
 
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #111;
+      padding: 2rem 1rem;
+      background: #0a0a0a;
       color: #ccc;
+      font-size: 0.9rem;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 768px) {
       nav {
         display: flex !important;
         flex-direction: row;
         justify-content: center;
+        background: none;
+        position: static;
       }
+
+      nav a {
+        border: none;
+        margin: 0 1rem;
+        padding: 0.5rem 0;
+      }
+
       .menu-btn {
         display: none;
       }
@@ -119,6 +183,8 @@
     <h1>Rohit Khalse</h1>
     <button class="menu-btn" onclick="toggleMenu()">☰</button>
   </header>
+
+  <!-- Nav placed outside header to avoid overlay -->
   <nav id="mobile-menu">
     <a href="#about">About</a>
     <a href="#education">Education</a>
@@ -128,46 +194,48 @@
   </nav>
 
   <div class="hero">
-    <img src="rohit.jpg" alt="Rohit Khalse" />
+    <img src="rohit.jpg" alt="Portrait of Rohit Khalse" />
     <h2>Assistant Professor</h2>
     <p>B.E., M.E. in Computer Science & Engineering</p>
     <p>MSSCET Jalna</p>
     <a href="resume.pdf" download class="resume-button">Download Resume</a>
   </div>
 
-  <section id="about">
-    <h3>About Me</h3>
-    <p>Hello! I’m Rohit Khalse, an Assistant Professor passionate about research-based teaching and mentoring at MSSCET Jalna.</p>
-  </section>
+  <main>
+    <section id="about">
+      <h3>About Me</h3>
+      <p>Hello! I’m Rohit Khalse, an Assistant Professor passionate about research-based teaching and mentoring at MSSCET Jalna. I enjoy guiding students through practical and innovative computer science projects.</p>
+    </section>
 
-  <section id="education">
-    <h3>Education</h3>
-    <p>Graduated from Government Polytechnic Pune with a strong foundation in engineering.</p>
-  </section>
+    <section id="education">
+      <h3>Education</h3>
+      <p>I graduated from Government Polytechnic Pune and later earned B.E. and M.E. degrees in Computer Science & Engineering.</p>
+    </section>
 
-  <section id="work">
-    <h3>Current Work</h3>
-    <p>I focus on classroom teaching, student research, and curriculum development at MSSCET Jalna.</p>
-  </section>
+    <section id="work">
+      <h3>Current Work</h3>
+      <p>Currently serving as Assistant Professor at MSSCET Jalna, I focus on classroom teaching, student research mentoring, and curriculum design.</p>
+    </section>
 
-  <section id="projects">
-    <h3>Publications & Projects</h3>
-    <ul>
-      <li>“AI-Enabled IoT and CPS for Enhanced Disease Detection: A Survey”</li>
-      <li>Final Year Project: “Graphical Password Authentication”</li>
-      <li>Published: “Energy-Aware Algorithms for MapReduce Workflows”</li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h3>Publications & Projects</h3>
+      <ul>
+        <li>“AI-Enabled IoT and CPS for Enhanced Disease Detection: A Survey”</li>
+        <li>Final Year Project: “Graphical Password Authentication”</li>
+        <li>Published: “Energy-Aware Algorithms for MapReduce Workflows”</li>
+      </ul>
+    </section>
 
-  <section id="contact">
-    <h3>Contact</h3>
-    <p>Mobile: 9561862866</p>
-    <p>Email: <a href="mailto:khalse606@gmail.com">khalse606@gmail.com</a></p>
-    <p>Location: MSSCET Jalna, Maharashtra, India</p>
-  </section>
+    <section id="contact">
+      <h3>Contact</h3>
+      <p><strong>Mobile:</strong> 9561862866</p>
+      <p><strong>Email:</strong> <a href="mailto:khalse606@gmail.com" style="color: var(--accent);">khalse606@gmail.com</a></p>
+      <p><strong>Location:</strong> MSSCET Jalna, Maharashtra, India</p>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Rohit Khalse</p>
+    <p>&copy; 2025 Rohit Khalse. All Rights Reserved.</p>
   </footer>
 
   <script>
